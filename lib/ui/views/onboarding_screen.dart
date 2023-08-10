@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tourapplication/const/app_color.dart';
+import 'package:tourapplication/ui/route/route.dart';
 import 'package:tourapplication/ui/styles/style.dart';
+//import 'package:tourapplication/ui/views/auth/sign_up.dart';
 
 class OnboardingScreen extends StatelessWidget {
   List<String> _lottieFiles = [
@@ -84,7 +86,7 @@ class OnboardingScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 if (_currentIndex == 2) {
-                                  print("Finished");
+                                  Get.toNamed(signUp);
                                 } else {
                                   _currentIndex + 1;
                                 }
