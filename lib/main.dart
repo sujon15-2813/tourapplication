@@ -17,18 +17,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // responsive kaj korar jonno ScreenUtils use krchi 
+    // responsive kaj korar jonno ScreenUtils use krchi
     return ScreenUtilInit(
-      designSize: Size(428, 926),
+      designSize: Size(428, 926), // figma screen size
       builder: (BuildContext, Widget) {
-        // GetMaterialApp use krchi Getx a kaj krar jnno 
-        
+        // GetMaterialApp use krchi Getx a kaj krar jnno
+
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: AppsString.AppName,
+          title: AppsString.AppName, //const string
           theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: GoogleFonts.poppinsTextTheme(
+              //use google font
               Theme.of(context).textTheme.apply(),
             ),
             scaffoldBackgroundColor: AppsColor.ScaffoldColor,

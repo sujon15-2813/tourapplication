@@ -13,3 +13,4 @@ List<GetPage> getpages = [
   GetPage(name: splash, page: () => SplashScreen()),
   GetPage(name: onboarding, page: () => OnboardingScreen()),
 ];
+ 
