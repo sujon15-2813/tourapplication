@@ -2,13 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:tourapplication/const/app_color.dart';
 import 'package:tourapplication/ui/route/route.dart';
 import 'package:tourapplication/ui/styles/style.dart';
 import 'package:tourapplication/ui/widgets/violetbutton.dart';
 
-class SignUp extends StatelessWidget {
+class SignIn extends StatelessWidget {
   TextEditingController _emailcontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
 
@@ -24,18 +24,18 @@ class SignUp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Create\nYour Account",
+                  "Login\nTo Your Account",
                   style: TextStyle(
                       fontSize: 30.sp,
                       fontWeight: FontWeight.w500,
                       color: AppsColor.violetColor),
                 ),
-                SizedBox(height: 12.h),
-                Text(
-                  "Create Your Account and start your journey....",
-                  style:
-                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
-                ),
+                // SizedBox(height: 12.h),
+                // Text(
+                //   "Create Your Account and start your journey....",
+                //   style:
+                //       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+                // ),
                 SizedBox(height: 80.h),
                 TextFormField(
                   controller: _emailcontroller,
@@ -52,7 +52,7 @@ class SignUp extends StatelessWidget {
                 SizedBox(
                   height: 40.h,
                 ),
-                VioletButton("Create Account "),
+                VioletButton("Login"),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -85,21 +85,20 @@ class SignUp extends StatelessWidget {
                 ),
                 RichText(
                   text: TextSpan(
-                      text: "Already an user ?  ",
+                      text: "Don't have registered yet ?  ",
                       style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w300,
                           color: Colors.black),
                       children: [
                         TextSpan(
-                          text: "Sign In",
-                          style: TextStyle(
-                              fontSize: 18.sp, fontWeight: FontWeight.w600),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.toNamed(signIn),
-                        ),
+                            text: "SignUp",
+                            style: TextStyle(
+                                fontSize: 18.sp, fontWeight: FontWeight.w600),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Get.toNamed(signUp)),
                       ]),
-                )
+                ),
               ],
             ),
           ),
