@@ -52,7 +52,7 @@ class SignIn extends StatelessWidget {
                 SizedBox(
                   height: 40.h,
                 ),
-                VioletButton("Login"),
+                VioletButton("Login",(){ }),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -100,7 +100,7 @@ class SignIn extends StatelessWidget {
                       ]),
                 ),
               ],
-            ),
+            ),   
           ),
         ),
       ),

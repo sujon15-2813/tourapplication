@@ -8,7 +8,8 @@ class VioletButton extends StatelessWidget {
   //vabe nei akhane get x use krteci tai Rx use krteci
   RxBool _value = false.obs;
   String title;
-  VioletButton(this.title);
+  final onAction;
+  VioletButton(this.title, this.onAction);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class VioletButton extends StatelessWidget {
       () => InkWell(
           onTap: () {
             _value.value = true;
+            onAction();
           },
           child: Container(
               height: 48.h,
