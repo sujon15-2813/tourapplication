@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // responsive kaj korar jonno ScreenUtils use krchi
     return ScreenUtilInit(
-      designSize: Size(428, 926), // figma screen size
+      //designSize: Size(428, 926), // figma screen size
       builder: (BuildContext, Widget) {
         // GetMaterialApp use krchi Getx a kaj krar jnno
 

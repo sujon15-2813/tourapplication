@@ -2,14 +2,37 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import 'package:tourapplication/const/app_color.dart';
+import 'package:tourapplication/ui/route/route.dart';
 import 'package:tourapplication/ui/styles/style.dart';
+import 'package:tourapplication/ui/views/privacy_policy.dart';
+import 'package:tourapplication/ui/widgets/violetbutton.dart';
 
 class UserForm extends StatelessWidget {
   TextEditingController _namecontroller = TextEditingController();
   TextEditingController _phonecontroller = TextEditingController();
   TextEditingController _addresscontroller = TextEditingController();
-  TextEditingController _dobcontroller = TextEditingController();
+  //jehetu stateless widget use korteci tai  state change korar jonno Rx<>.obs use krchi atar
+  //fole amra ak page theke onno page a jete perbo
+
+  Rx<TextEditingController> _dobcontroller = TextEditingController().obs;
+  // ata use krchi date pawar jonno
+  Rx<DateTime> selectedDate = DateTime.now().obs;
+  _selectDate(BuildContext context) async {
+    //! parameter hisabe context pathano hsce
+    final selected = await showDatePicker(
+        context: context,
+        initialDate: selectedDate.value,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2040));
+    if (selected != null && selected != selectedDate) {
+      _dobcontroller.value.text =
+          "${selected.day}-${selected.month}-${selected.year}";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +61,37 @@ class UserForm extends StatelessWidget {
                 FromField(_namecontroller, TextInputType.name, 'Name'),
                 FromField(_phonecontroller, TextInputType.number, 'Number'),
                 FromField(_addresscontroller, TextInputType.text, 'Address'),
-                TextFormField(
-                  controller: _dobcontroller,
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    hintText: "Date of Birth",
-                    hintStyle: TextStyle(
-                      fontSize: 15.sp,
-                    ),
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.calendar_today),
+                Obx(
+                  () => TextFormField(
+                    controller: _dobcontroller.value,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      hintText: "Date of Birth",
+                      hintStyle: TextStyle(
+                        fontSize: 15.sp,
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () => _selectDate(context),
+                        icon: Icon(Icons.calendar_today),
+                      ),
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                ToggleSwitch(
+                  initialLabelIndex: 0,
+                  totalSwitches: 2,
+                  labels: ['Male', 'Female'],
+                  onToggle: (index) {
+                    print("switched to :$index");
+                  },
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                VioletButton("Submit", () => Get.toNamed(privacyPolicy))
               ],
             ),
           ),
